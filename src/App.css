@@ -26,7 +26,11 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: '#61dafb';
+}
+
+.input-txt::-ms-input-placeholder {
+  color: '#D9D9D9'
 }
 
 @keyframes App-logo-spin {
@@ -37,3 +41,4 @@
     transform: rotate(360deg);
   }
 }
+
