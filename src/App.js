@@ -14,26 +14,32 @@ import { Provider, useSelector } from "react-redux";
 import store from "./store/index";
 
 //screen
-import {WelcomeScreen} from './screen/welcomeScreen'
-
+import { WelcomeScreen } from './screen/welcomeScreen'
+import { uiScreen } from './screen/uiScreen'
 function App() {
-  return (
-    <Router>
-      <Provider store={store}>
-        <Switch>
-          {/* <LoginProtectedRoute exact path="/" authLogin={authLogin}>
+    return (
+      <Router>
+        <Provider store={store}>
+          <Switch>
+            {/* <LoginProtectedRoute exact path="/" authLogin={authLogin}>
             <Login loginFunction={loginFunction} />
           </LoginProtectedRoute> */}
-          {/* <Route exact path="/register">
+            {/* <Route exact path="/register">
             <UserRegister />
           </Route> */}
-          <Route
-            exact
-            path="/"
-            // authLogin={authLogin}
-            component={WelcomeScreen}
-          />
-          {/* <ProtectedRoute
+            <Route
+              exact
+              path="/"
+              // authLogin={authLogin}
+              component={WelcomeScreen}
+            />
+            <Route
+              exact
+              path="/home"
+              // authLogin={authLogin}
+              component={uiScreen}
+            />
+            {/* <ProtectedRoute
             path="/admin/product"
             authLogin={authLogin}
             component={CreateProduct}
@@ -63,10 +69,10 @@ function App() {
             authLogin={authLogin}
             component={OrderListFarmer}
           /> */}
-        </Switch>
-      </Provider>
-    </Router>
-  );
-}
+          </Switch>
+        </Provider>
+      </Router>
+    );
+  }
 
 export default App;
