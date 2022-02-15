@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //action
-import {fetchLogin} from "../store/action/userAction"
+import { fetchLogin } from "../store/action/userAction"
 export const WelcomeScreen = () => {
     const dispatch = useDispatch()
     const [tempSubmit, setTempInput] = useState({
@@ -44,8 +44,9 @@ export const WelcomeScreen = () => {
                             >
                                 <div className="input-group mb-3" style={{ padding: '0px', justifyContent: 'center', margin: '0px 12px', width: '272px' }}>
                                     <input
+                                        required
                                         type="text"
-                                        className="form-control input-txt"
+                                        className="form-control input-txt1"
                                         placeholder="Your Name"
                                         style={{ fontFamily: 'Nunito', fontSize: '12px' }}
                                         onChange={userNameInput}
@@ -60,8 +61,9 @@ export const WelcomeScreen = () => {
                                 </div>
                                 <div className="input-group mb-3" style={{ padding: '0px', justifyContent: 'center', margin: '0px 12px', width: '272px' }}>
                                     <input
-                                        type="text"
-                                        className="form-control"
+                                        required
+                                        type="email"
+                                        className="form-control input-txt1"
                                         placeholder="Email"
                                         style={{ fontFamily: 'Nunito', fontSize: '12px', color: '#D9D9D9' }}
                                         onChange={emailInput}
