@@ -15,7 +15,7 @@ import store from "./store/index";
 
 //screen
 import { WelcomeScreen } from './screen/welcomeScreen'
-import { uiScreen } from './screen/uiScreen'
+import { UiScreen } from './screen/uiScreen'
 function App() {
     return (
       <Router>
@@ -37,7 +37,7 @@ function App() {
               exact
               path="/home"
               // authLogin={authLogin}
-              component={uiScreen}
+              component={UiScreen}
             />
             {/* <ProtectedRoute
             path="/admin/product"

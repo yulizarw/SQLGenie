@@ -2,22 +2,41 @@ import React, { useState, useEffect } from 'react'
 
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import Autocomplete from 'react-autocomplete'
 //action
 
 import logo from '../assets/icons/fi-rr-database.png'
-export const uiScreen = () => {
+import threeDotLogo from '../assets/icons/fi-rr-menu-dots-vertical.png'
+import closeIcon from '../assets/icons/fi-rr-cross-circle.png'
+export const UiScreen = () => {
+    const [selectedValue, setSelectedValue] = useState('')
+    const [tagValue, setTagValue] = useState([])
     const templateDropDown = [
         {
-            text:'Name - Varchar - 10'
+            label: 'Name - Varchar - 10'
         },
         {
-            text:'Name - Varchar - 20'
+            label: 'Name - Varchar - 20'
         },
         {
-            text:'Namban'
+            label: 'Namban - Int'
         },
     ]
+    const changeSelectedValue = (e) => {
+        setSelectedValue(e)
+    }
+
+    const selectSelectedValue = (val) => {
+        setSelectedValue(val)
+        setTagValue([...tagValue, val])
+    }
+
+   const clickCloseIcon= (e,i) => {
+       e.preventDefault()
+   
+       const filterTag = tagValue.filter(item=> console.log(item,'fitler'))
+       console.log(filterTag,'output')
+   }
     return (
         <>
             <div style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}>
@@ -75,9 +94,78 @@ export const uiScreen = () => {
                                 <img src={logo} alt="Canvas Logo" style={{ size: '16px', backgroundColor: 'white' }} />
                             </div>
 
-                            <input type="text"
+                            <Autocomplete type="text"
                                 className="form-control input-txt1"
-                                placeholder="Write your field name"
+
+                                id="input-filter" data-filter={templateDropDown}
+                                // autocomplete start
+                                items={templateDropDown}
+                                shouldItemRender={(item, value
+                                ) => item.label.toLowerCase()
+                                    .indexOf(value.toLowerCase()) > -1}
+
+                                getItemValue={item => item.label}
+
+                                renderItem={(item, isHighlighted) =>
+                                    selectedValue.toLowerCase()[0] === item.label.toLowerCase()[0] ? <div
+                                        style={{
+                                            background: isHighlighted ?
+                                                '#FFDDDD' : '#FFFFFF',
+                                            width: '134px',
+                                            height: '32px',
+                                            borderRadius: '4px',
+                                            justifyContent: 'flex-start',
+                                            display: 'flex',
+                                            marginLeft: '11.5px',
+                                            marginBottom: '8px',
+                                            padding: '8px'
+                                        }}
+                                        key={item.id}>
+                                        {item.label} <br></br>
+
+                                    </div> : <div>
+                                    </div>
+                                }
+
+                                value={selectedValue}
+                                onChange={e => changeSelectedValue(e.target.value)}
+                                onSelect={(val) => selectSelectedValue(val)}
+                                menuStyle={{
+                                    width: '210px',
+                                    height: '169px',
+                                    fontFamily: 'nunito',
+                                    marginTop: '19px',
+                                    marginLeft: '-42px',
+                                    textAlign: 'center',
+                                    borderRadius: '8px',
+                                    background: '#FFFFFF',
+                                    padding: '15px 0px 10px',
+                                    fontSize: '90%',
+                                    position: 'fixed',
+                                    overflow: 'auto',
+                                    maxHeight: '50%',
+                                    fontSize: '12px',
+                                    lineHeight: '16px',
+                                    zIndex: 1
+                                }}
+                                inputProps={{
+                                    style: {
+                                        fontFamily: 'Nunito',
+                                        fontSize: '12px',
+                                        width: '166px',
+                                        height: '44px',
+                                        top: '42px',
+                                        position: 'static',
+                                        paddingTop: '14px',
+                                        paddingBottom: '14px',
+                                        paddingRight: '21px',
+                                        paddingLeft: '26px',
+                                        border: '0',
+                                        borderRadius: '3px'
+                                    },
+                                    placeholder: "Write your field name"
+                                }}
+                                // autocomplet finsih
                                 style={{
                                     fontFamily: 'Nunito',
                                     fontSize: '12px',
@@ -90,10 +178,66 @@ export const uiScreen = () => {
                                     paddingRight: '21px',
                                     paddingLeft: '26px',
                                     border: '0'
-                                }}></input>
+                                }}
+                            ></Autocomplete>
+                            <div style={{
+                                width: '210px',
+                                height: '169px',
+                                fontFamily: 'nunito',
+                                marginTop: '55px',
+                                textAlign: 'center',
+                                borderRadius: '8px',
+                                background: '#FFFFFF',
+                                fontSize: '90%',
+                                position: 'fixed',
+                                overflow: 'auto',
+                                maxHeight: '50%',
+                                fontSize: '12px',
+                                lineHeight: '16px'
+                            }}>
+                                {tagValue.length > 0 && (tagValue.map((mapValue,i) => (
+                                    <button type="button" className='btn' style={{
+                                        width: '149px',
+                                        height: '32px',
+                                        backgroundColor: '#FF5050',
+                                        borderRadius: '4px',
+                                        fontFamily: 'nunito',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        color: '#FFFFFF',
+                                        textAlign: 'left',
+                                        marginTop: '20px',
+                                        marginLeft: '21px',
+                                        marginBottom: '14px',
+                                        marginRight: '40px',
+                                        disabled: 'true',
+                                        padding: '8px',
+                                        paddingTop: '6px',
+                                        display: 'flex', flexDirection: 'row'
+                                    }}>
 
 
+                                        <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
+
+                                        <a><img src={threeDotLogo} alt="Canvas Logo" style={{
+                                            size: '12px',
+                                            marginLeft: '12px',
+                                            marginRight: '12px'
+                                        }} />
+                                        </a>
+                                        <a onClick={(e)=>clickCloseIcon(e,i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                            size: '12px',
+                                        }} />
+                                        </a>
+
+                                    </button>
+                                )))}
+                      
+
+
+                            </div>
                         </div>
+
                     </form>
                 </div>
 
