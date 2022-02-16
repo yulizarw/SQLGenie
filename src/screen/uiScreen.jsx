@@ -1,16 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Autocomplete from 'react-autocomplete'
 //action
+import { setDropDownState } from '../store/action/userAction';
 
 import logo from '../assets/icons/fi-rr-database.png'
 import threeDotLogo from '../assets/icons/fi-rr-menu-dots-vertical.png'
 import closeIcon from '../assets/icons/fi-rr-cross-circle.png'
+
 export const UiScreen = () => {
+    const inputFilter = useRef()
+    const dispatch = useDispatch();
+    const [tempStateMenu, setTemp] = useState({})
+    useEffect(() => {
+        dispatch(setDropDownState(inputFilter.current))
+        setTemp(inputFilter.current)
+    })
+
     const [selectedValue, setSelectedValue] = useState('')
     const [tagValue, setTagValue] = useState([])
+
+    const stateStoreDropdown = useSelector((state) => state.userReducers.dropDownState)
+    const [menuDropdown, setMenuDropdown] = useState('')
+
     const templateDropDown = [
         {
             label: 'Name - Varchar - 10'
@@ -33,9 +47,9 @@ export const UiScreen = () => {
     ]
     const changeSelectedValue = (e) => {
         setSelectedValue(e)
-        const getHeightMenu= document.getElementById('input-filter');
-        console.log(getHeightMenu.menuStyle,'aku')
+        // setMenuDropdown(stateStoreDropdown.props.menuStyle.props)
     }
+
 
     const selectSelectedValue = (val) => {
         setSelectedValue(val)
@@ -44,15 +58,17 @@ export const UiScreen = () => {
 
     const clickCloseIcon = (e, i) => {
         e.preventDefault()
-
         const filterTag = tagValue.filter(item => console.log(item, 'fitler'))
-        console.log(filterTag, 'output')
+
+    }
+    var flag = false
+    if (!tempStateMenu){
+        flag = false
+    }else{
+        flag = true
     }
 
-    const calcWidthMenu = () =>{
-       const getHeightMenu= document.getElementById('input-filter');
-    //    console.log(getHeightMenu.menuStyle,'aku')
-    }
+    console.log(flag,'asd')
     return (
         <>
             <div style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}>
@@ -109,12 +125,12 @@ export const UiScreen = () => {
                             }}>
                                 <img src={logo} alt="Canvas Logo" style={{ size: '16px', backgroundColor: 'white' }} />
                             </div>
-                            
+
                             {selectedValue.length > 0 && templateDropDown.filter((item, i) => item.label[0].toLowerCase() === selectedValue[0].toLowerCase()).length > 0 ? <Autocomplete type="text"
                                 className="form-control input-txt1"
 
                                 id="input-filter" data-filter={templateDropDown}
-                                
+
                                 // autocomplete start
                                 items={templateDropDown}
                                 shouldItemRender={(item, value
@@ -136,7 +152,7 @@ export const UiScreen = () => {
                                             marginLeft: '11.5px',
                                             marginBottom: '8px',
                                             padding: '8px',
-                                            
+
 
                                         }}
                                         key={item.id}>
@@ -148,13 +164,17 @@ export const UiScreen = () => {
 
                                 value={selectedValue}
                                 onChange={e => changeSelectedValue(e.target.value)}
+
                                 onSelect={(val) => selectSelectedValue(val)}
+                                ref={inputFilter}
                                 menuStyle={{
                                     onMenuVisibilityChange: 'open',
                                     open: true,
                                     width: '210px',
                                     height: 'auto',
-                                 
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    flexWrap: 'wrap',
                                     fontFamily: 'nunito',
                                     marginTop: '19px',
                                     marginLeft: '-42px',
@@ -170,7 +190,7 @@ export const UiScreen = () => {
                                     fontSize: '12px',
                                     lineHeight: '16px',
                                     zIndex: 1,
-                                
+
 
                                 }}
                                 inputProps={{
@@ -190,8 +210,8 @@ export const UiScreen = () => {
                                     },
                                     placeholder: "Write your field name"
                                 }}
-                                // autocomplet finsih
-                               
+                            // autocomplet finsih
+
                             ></Autocomplete> :
                                 <Autocomplete type="text"
                                     className="form-control input-txt1"
@@ -231,7 +251,7 @@ export const UiScreen = () => {
                                     onSelect={(val) => selectSelectedValue(val)}
                                     menuStyle={{
                                         onMenuVisibilityChange: 'open',
-                                        isOpen: false,
+                                        open: false,
                                         width: '210px',
                                         height: '169px',
                                         fontFamily: 'nunito',
@@ -267,19 +287,17 @@ export const UiScreen = () => {
                                         },
                                         placeholder: "Write your field name"
                                     }}
-                                    // autocomplet finsih
-                                   
+                                // autocomplet finsih
+
                                 ></Autocomplete>}
 
-
-                            {tagValue.length > 0 &&
+                            {flag==true && tagValue.length > 0 ?
                                 <div style={{
                                     width: '210px',
-                                    position:'relative',
-                                    height: '25%',
+                                    height: '121px',
                                     fontFamily: 'nunito',
                                     marginTop: '245px',
-                                    marginBottom:'184px',
+                                    marginBottom: '1804px',
                                     textAlign: 'center',
                                     borderRadius: '8px',
                                     background: '#FFFFFF',
@@ -288,7 +306,9 @@ export const UiScreen = () => {
                                     overflow: 'auto',
                                     maxHeight: '50%',
                                     fontSize: '12px',
-                                    lineHeight: '16px'
+                                    lineHeight: '16px',
+                                    
+                                  scrollBehavior:'smooth'
                                 }}>
                                     {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
                                         <button type="button" className='btn' style={{
@@ -307,9 +327,9 @@ export const UiScreen = () => {
                                             marginRight: '40px',
                                             disabled: 'true',
                                             padding: '8px',
-                                           
+
                                             display: 'flex', flexDirection: 'row',
-                                           
+
                                         }}>
 
 
@@ -328,6 +348,66 @@ export const UiScreen = () => {
 
                                         </button>
                                     )))}
+                                </div>:
+                                  <div style={{
+                                    width: '210px',
+                                    height: '121px',
+                                    fontFamily: 'nunito',
+                                    marginTop: '63px',
+                                    marginBottom: '1100000px',
+                                    textAlign: 'center',
+                                    borderRadius: '8px',
+                                    background: '#FFFFFF',
+                                    fontSize: '90%',
+                                    position: 'fixed',
+                                    overflow: 'auto',
+                                    maxHeight: '50%',
+                                    fontSize: '12px',
+                                    lineHeight: '16px',
+                                   
+                            
+                                 
+                                }}>
+                                    {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
+                                        <button type="button" className='btn' style={{
+                                            width: '149px',
+                                            height: '32px',
+                                            backgroundColor: '#FF5050',
+                                            borderRadius: '4px',
+                                            fontFamily: 'nunito',
+                                            fontSize: '12px',
+                                            fontWeight: '600',
+                                            color: '#FFFFFF',
+                                            textAlign: 'left',
+                                            marginTop: '20px',
+                                            marginLeft: '21px',
+                                            marginBottom: '14px',
+                                            marginRight: '40px',
+                                            disabled: 'true',
+                                            padding: '8px',
+
+                                            display: 'flex', flexDirection: 'row',
+
+                                        }}>
+
+
+                                            <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
+
+                                            <a><img src={threeDotLogo} alt="Canvas Logo" style={{
+                                                size: '12px',
+                                                marginLeft: '12px',
+                                                marginRight: '12px'
+                                            }} />
+                                            </a>
+                                            <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                                size: '12px',
+                                            }} />
+                                            </a>
+
+                                        </button>
+                                    )))}
+
+
 
 
 
