@@ -21,9 +21,20 @@ export const UiScreen = () => {
         {
             label: 'Namban - Int'
         },
+        {
+            label: 'Name - Varchar - 10'
+        },
+        {
+            label: 'Name - Varchar - 20'
+        },
+        {
+            label: 'Namban - Int'
+        },
     ]
     const changeSelectedValue = (e) => {
         setSelectedValue(e)
+        const getHeightMenu= document.getElementById('input-filter');
+        console.log(getHeightMenu.menuStyle,'aku')
     }
 
     const selectSelectedValue = (val) => {
@@ -36,6 +47,11 @@ export const UiScreen = () => {
 
         const filterTag = tagValue.filter(item => console.log(item, 'fitler'))
         console.log(filterTag, 'output')
+    }
+
+    const calcWidthMenu = () =>{
+       const getHeightMenu= document.getElementById('input-filter');
+    //    console.log(getHeightMenu.menuStyle,'aku')
     }
     return (
         <>
@@ -98,6 +114,7 @@ export const UiScreen = () => {
                                 className="form-control input-txt1"
 
                                 id="input-filter" data-filter={templateDropDown}
+                                
                                 // autocomplete start
                                 items={templateDropDown}
                                 shouldItemRender={(item, value
@@ -118,7 +135,9 @@ export const UiScreen = () => {
                                             display: 'flex',
                                             marginLeft: '11.5px',
                                             marginBottom: '8px',
-                                            padding: '8px'
+                                            padding: '8px',
+                                            
+
                                         }}
                                         key={item.id}>
                                         {item.label} <br></br>
@@ -134,7 +153,8 @@ export const UiScreen = () => {
                                     onMenuVisibilityChange: 'open',
                                     open: true,
                                     width: '210px',
-                                    height: '169px',
+                                    height: 'auto',
+                                 
                                     fontFamily: 'nunito',
                                     marginTop: '19px',
                                     marginLeft: '-42px',
@@ -146,10 +166,11 @@ export const UiScreen = () => {
                                     fontSize: '90%',
                                     position: 'fixed',
                                     overflow: 'auto',
-                                    maxHeight: '50%',
+                                    maxHeight: '169px',
                                     fontSize: '12px',
                                     lineHeight: '16px',
-                                    zIndex: 1
+                                    zIndex: 1,
+                                
 
                                 }}
                                 inputProps={{
@@ -170,19 +191,7 @@ export const UiScreen = () => {
                                     placeholder: "Write your field name"
                                 }}
                                 // autocomplet finsih
-                                style={{
-                                    fontFamily: 'Nunito',
-                                    fontSize: '12px',
-                                    width: '166px',
-                                    height: '44px',
-                                    top: '42px',
-                                    position: 'static',
-                                    paddingTop: '14px',
-                                    paddingBottom: '14px',
-                                    paddingRight: '21px',
-                                    paddingLeft: '26px',
-                                    border: '0'
-                                }}
+                               
                             ></Autocomplete> :
                                 <Autocomplete type="text"
                                     className="form-control input-txt1"
@@ -259,28 +268,18 @@ export const UiScreen = () => {
                                         placeholder: "Write your field name"
                                     }}
                                     // autocomplet finsih
-                                    style={{
-                                        fontFamily: 'Nunito',
-                                        fontSize: '12px',
-                                        width: '166px',
-                                        height: '44px',
-                                        top: '42px',
-                                        position: 'static',
-                                        paddingTop: '14px',
-                                        paddingBottom: '14px',
-                                        paddingRight: '21px',
-                                        paddingLeft: '26px',
-                                        border: '0'
-                                    }}
+                                   
                                 ></Autocomplete>}
 
 
                             {tagValue.length > 0 &&
                                 <div style={{
                                     width: '210px',
-                                    height: '169px',
+                                    position:'relative',
+                                    height: '25%',
                                     fontFamily: 'nunito',
-                                    marginTop: '55px',
+                                    marginTop: '245px',
+                                    marginBottom:'184px',
                                     textAlign: 'center',
                                     borderRadius: '8px',
                                     background: '#FFFFFF',
@@ -308,8 +307,9 @@ export const UiScreen = () => {
                                             marginRight: '40px',
                                             disabled: 'true',
                                             padding: '8px',
-                                            paddingTop: '6px',
-                                            display: 'flex', flexDirection: 'row'
+                                           
+                                            display: 'flex', flexDirection: 'row',
+                                           
                                         }}>
 
 

@@ -65,7 +65,7 @@ export const WelcomeScreen = () => {
                                         type="email"
                                         className="form-control input-txt1"
                                         placeholder="Email"
-                                        style={{ fontFamily: 'Nunito', fontSize: '12px', color: '#D9D9D9' }}
+                                        style={{ fontFamily: 'Nunito', fontSize: '12px' }}
                                         onChange={emailInput}
                                     />
 
@@ -86,9 +86,6 @@ export const WelcomeScreen = () => {
                                     </div>
                                 </div>
                             </form>
-
-
-
                         </div>
                     </div>
                 </div>
