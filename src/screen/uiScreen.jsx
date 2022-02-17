@@ -3,22 +3,29 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Autocomplete from 'react-autocomplete'
+import EventListener, { withOptions } from 'react-event-listener'
 //action
 import { setDropDownState } from '../store/action/userAction';
 
+//asset
 import logo from '../assets/icons/fi-rr-database.png'
 import threeDotLogo from '../assets/icons/fi-rr-menu-dots-vertical.png'
 import closeIcon from '../assets/icons/fi-rr-cross-circle.png'
 
 export const UiScreen = () => {
     const inputFilter = useRef()
+    const clcikBody = useRef()
+
     const dispatch = useDispatch();
     const [tempStateMenu, setTemp] = useState({})
+
     useEffect(() => {
         dispatch(setDropDownState(inputFilter.current))
         setTemp(inputFilter.current)
+        
     })
 
+   
     const [selectedValue, setSelectedValue] = useState('')
     const [tagValue, setTagValue] = useState([])
 
@@ -47,13 +54,13 @@ export const UiScreen = () => {
     ]
     const changeSelectedValue = (e) => {
         setSelectedValue(e)
-        // setMenuDropdown(stateStoreDropdown.props.menuStyle.props)
+       
     }
-
 
     const selectSelectedValue = (val) => {
         setSelectedValue(val)
         setTagValue([...tagValue, val])
+        
     }
 
     const clickCloseIcon = (e, i) => {
@@ -62,16 +69,21 @@ export const UiScreen = () => {
 
     }
     var flag = false
-    if (!tempStateMenu){
+ 
+    if (!tempStateMenu) {
         flag = false
-    }else{
+        
+    } else {
         flag = true
+        window.onclick = () => {
+            setSelectedValue('')
+        }
     }
-
-    console.log(flag,'asd')
+  
     return (
         <>
-            <div style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}>
+            <div ref={clcikBody} style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}  >
+
                 <div className="hold-transition login-page" style={{ backgroundColor: "#E5E5E5" }}>
                     <h1 style={{
                         position: 'absolute', top: '10.25%',
@@ -168,6 +180,7 @@ export const UiScreen = () => {
                                 onSelect={(val) => selectSelectedValue(val)}
                                 ref={inputFilter}
                                 menuStyle={{
+                                    display: 'block !important',
                                     onMenuVisibilityChange: 'open',
                                     open: true,
                                     width: '210px',
@@ -290,14 +303,14 @@ export const UiScreen = () => {
                                 // autocomplet finsih
 
                                 ></Autocomplete>}
-
-                            {flag==true && tagValue.length > 0 ?
+                           
+                            {flag === true && tagValue.length > 0 ?
                                 <div style={{
                                     width: '210px',
                                     height: '121px',
                                     fontFamily: 'nunito',
                                     marginTop: '245px',
-                                    marginBottom: '1804px',
+
                                     textAlign: 'center',
                                     borderRadius: '8px',
                                     background: '#FFFFFF',
@@ -307,8 +320,8 @@ export const UiScreen = () => {
                                     maxHeight: '50%',
                                     fontSize: '12px',
                                     lineHeight: '16px',
-                                    
-                                  scrollBehavior:'smooth'
+
+                                    scrollBehavior: 'smooth'
                                 }}>
                                     {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
                                         <button type="button" className='btn' style={{
@@ -348,8 +361,8 @@ export const UiScreen = () => {
 
                                         </button>
                                     )))}
-                                </div>:
-                                  <div style={{
+                                </div> :
+                                <div style={{
                                     width: '210px',
                                     height: '121px',
                                     fontFamily: 'nunito',
@@ -364,9 +377,9 @@ export const UiScreen = () => {
                                     maxHeight: '50%',
                                     fontSize: '12px',
                                     lineHeight: '16px',
-                                   
-                            
-                                 
+
+
+
                                 }}>
                                     {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
                                         <button type="button" className='btn' style={{
