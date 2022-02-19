@@ -34,21 +34,45 @@ export const UiScreen = () => {
 
     const templateDropDown = [
         {
-            label: 'Name - Varchar - 10'
+            id      : '0',
+            name    : 'name',
+            type    : 'varchar',
+            size    : '10',
+            label   : 'Name - Varchar - 10'
         },
         {
+            id      : '1',
+            name    : 'name',
+            type    : 'varchar',
+            size    : '20',
+            label   : 'Name - Varchar - 20'
+        },
+        {
+            id      : '2',
+            name    : 'namban',
+            type    : 'integer',
+            size    : '',
+            label   : 'Namban - Int'
+        },
+        {
+            id      : '3',
+            name    : 'name',
+            type    : 'varchar',
+            size    : '10',
+            label   : 'Name - Varchar - 10'
+        },
+        {
+            id   : '4',
+            name    : 'name',
+            type    : 'varchar',
+            size    : '20',
             label: 'Name - Varchar - 20'
         },
         {
-            label: 'Namban - Int'
-        },
-        {
-            label: 'Name - Varchar - 10'
-        },
-        {
-            label: 'Name - Varchar - 20'
-        },
-        {
+            id   : '5',
+            name    : 'namban',
+            type    : 'integer',
+            size    : '',
             label: 'Namban - Int'
         },
     ]
@@ -63,9 +87,11 @@ export const UiScreen = () => {
         
     }
 
-    const clickCloseIcon = (e, i) => {
+    const clickCloseIcon = (e, mapValue,i) => {
         e.preventDefault()
-        const filterTag = tagValue.filter(item => console.log(item, 'fitler'))
+        console.log(i,'ps')
+        const filterTag = tagValue.filter((item,id)=> i!==id)
+        setTagValue(filterTag)
 
     }
     var flag = false
@@ -412,7 +438,7 @@ export const UiScreen = () => {
                                                 marginRight: '12px'
                                             }} />
                                             </a>
-                                            <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                            <a onClick={(e)=>clickCloseIcon(e,mapValue,i)}><img src={closeIcon} alt="Canvas Logo" style={{
                                                 size: '12px',
                                             }} />
                                             </a>
