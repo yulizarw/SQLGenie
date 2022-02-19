@@ -22,10 +22,10 @@ export const UiScreen = () => {
     useEffect(() => {
         dispatch(setDropDownState(inputFilter.current))
         setTemp(inputFilter.current)
-        
+
     })
 
-   
+
     const [selectedValue, setSelectedValue] = useState('')
     const [tagValue, setTagValue] = useState([])
 
@@ -34,78 +34,78 @@ export const UiScreen = () => {
 
     const templateDropDown = [
         {
-            id      : '0',
-            name    : 'name',
-            type    : 'varchar',
-            size    : '10',
-            label   : 'Name - Varchar - 10'
+            id: '0',
+            name: 'name',
+            type: 'varchar',
+            size: '10',
+            label: 'Name - Varchar - 10'
         },
         {
-            id      : '1',
-            name    : 'name',
-            type    : 'varchar',
-            size    : '20',
-            label   : 'Name - Varchar - 20'
-        },
-        {
-            id      : '2',
-            name    : 'namban',
-            type    : 'integer',
-            size    : '',
-            label   : 'Namban - Int'
-        },
-        {
-            id      : '3',
-            name    : 'name',
-            type    : 'varchar',
-            size    : '10',
-            label   : 'Name - Varchar - 10'
-        },
-        {
-            id   : '4',
-            name    : 'name',
-            type    : 'varchar',
-            size    : '20',
+            id: '1',
+            name: 'name',
+            type: 'varchar',
+            size: '20',
             label: 'Name - Varchar - 20'
         },
         {
-            id   : '5',
-            name    : 'namban',
-            type    : 'integer',
-            size    : '',
+            id: '2',
+            name: 'namban',
+            type: 'integer',
+            size: '',
+            label: 'Namban - Int'
+        },
+        {
+            id: '3',
+            name: 'name',
+            type: 'varchar',
+            size: '10',
+            label: 'Name - Varchar - 10'
+        },
+        {
+            id: '4',
+            name: 'name',
+            type: 'varchar',
+            size: '20',
+            label: 'Name - Varchar - 20'
+        },
+        {
+            id: '5',
+            name: 'namban',
+            type: 'integer',
+            size: '',
             label: 'Namban - Int'
         },
     ]
     const changeSelectedValue = (e) => {
         setSelectedValue(e)
-       
+
     }
 
     const selectSelectedValue = (val) => {
         setSelectedValue(val)
         setTagValue([...tagValue, val])
-        
+
     }
 
-    const clickCloseIcon = (e, mapValue,i) => {
+    const clickCloseIcon = (e, mapValue, i) => {
         e.preventDefault()
-        console.log(i,'ps')
-        const filterTag = tagValue.filter((item,id)=> i!==id)
+        console.log(i, 'ps')
+        const filterTag = tagValue.filter((item, id) => i !== id)
         setTagValue(filterTag)
 
     }
     var flag = false
- 
+
     if (!tempStateMenu) {
         flag = false
-        
+
     } else {
         flag = true
         window.onclick = () => {
             setSelectedValue('')
         }
     }
-  
+
     return (
         <>
             <div ref={clcikBody} style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}  >
@@ -329,7 +329,6 @@ export const UiScreen = () => {
                                 // autocomplet finsih
 
                                 ></Autocomplete>}
-                           
                             {flag === true && tagValue.length > 0 ?
                                 <div style={{
                                     width: '210px',
@@ -387,70 +386,120 @@ export const UiScreen = () => {
 
                                         </button>
                                     )))}
-                                </div> :
-                                <div style={{
-                                    width: '210px',
-                                    height: '121px',
-                                    fontFamily: 'nunito',
-                                    marginTop: '63px',
-                                    marginBottom: '1100000px',
-                                    textAlign: 'center',
-                                    borderRadius: '8px',
-                                    background: '#FFFFFF',
-                                    fontSize: '90%',
-                                    position: 'fixed',
-                                    overflow: 'auto',
-                                    maxHeight: '50%',
-                                    fontSize: '12px',
-                                    lineHeight: '16px',
-
-
-
-                                }}>
-                                    {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                        <button type="button" className='btn' style={{
-                                            width: '149px',
-                                            height: '32px',
-                                            backgroundColor: '#FF5050',
-                                            borderRadius: '4px',
-                                            fontFamily: 'nunito',
-                                            fontSize: '12px',
-                                            fontWeight: '600',
-                                            color: '#FFFFFF',
-                                            textAlign: 'left',
-                                            marginTop: '20px',
-                                            marginLeft: '21px',
-                                            marginBottom: '14px',
-                                            marginRight: '40px',
-                                            disabled: 'true',
-                                            padding: '8px',
-
-                                            display: 'flex', flexDirection: 'row',
-
-                                        }}>
-
-
-                                            <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                            <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                size: '12px',
-                                                marginLeft: '12px',
-                                                marginRight: '12px'
-                                            }} />
-                                            </a>
-                                            <a onClick={(e)=>clickCloseIcon(e,mapValue,i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                size: '12px',
-                                            }} />
-                                            </a>
-
-                                        </button>
-                                    )))}
-
-
-
-
-
                                 </div>
+                                : flag === false && tagValue.length == 0
+
+                                    ? <div style={{
+                                        width: '210px',
+                                        height: '121px',
+                                        fontFamily: 'nunito',
+                                        marginTop: '63px',
+                                        marginBottom: '1100000px',
+                                        textAlign: 'center',
+                                        borderRadius: '8px',
+                                        background: 'transparent',
+                                        fontSize: '90%',
+                                        position: 'fixed',
+                                        overflow: 'auto',
+                                        maxHeight: '50%',
+                                        fontSize: '12px',
+                                        lineHeight: '16px',
+                                    }}>
+                                        {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
+                                            <button type="button" className='btn' style={{
+                                                width: '149px',
+                                                height: '32px',
+                                                backgroundColor: '#FF5050',
+                                                borderRadius: '4px',
+                                                fontFamily: 'nunito',
+                                                fontSize: '12px',
+                                                fontWeight: '600',
+                                                color: '#FFFFFF',
+                                                textAlign: 'left',
+                                                marginTop: '20px',
+                                                marginLeft: '21px',
+                                                marginBottom: '14px',
+                                                marginRight: '40px',
+                                                disabled: 'true',
+                                                padding: '8px',
+
+                                                display: 'flex', flexDirection: 'row',
+
+                                            }}>
+
+
+                                                <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
+
+                                                <a><img src={threeDotLogo} alt="Canvas Logo" style={{
+                                                    size: '12px',
+                                                    marginLeft: '12px',
+                                                    marginRight: '12px'
+                                                }} />
+                                                </a>
+                                                <a onClick={(e) => clickCloseIcon(e, mapValue, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                                    size: '12px',
+                                                }} />
+                                                </a>
+
+                                            </button>
+                                        )))}
+                                    </div> :
+                                    <div style={{
+                                        width: '210px',
+                                        height: '121px',
+                                        fontFamily: 'nunito',
+                                        marginTop: '63px',
+                                        marginBottom: '1100000px',
+                                        textAlign: 'center',
+                                        borderRadius: '8px',
+                                        background: '#FFFFFF',
+                                        fontSize: '90%',
+                                        position: 'fixed',
+                                        overflow: 'auto',
+                                        maxHeight: '50%',
+                                        fontSize: '12px',
+                                        lineHeight: '16px',
+                                    }}>
+                                        {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
+                                            <button type="button" className='btn' style={{
+                                                width: '149px',
+                                                height: '32px',
+                                                backgroundColor: '#FF5050',
+                                                borderRadius: '4px',
+                                                fontFamily: 'nunito',
+                                                fontSize: '12px',
+                                                fontWeight: '600',
+                                                color: '#FFFFFF',
+                                                textAlign: 'left',
+                                                marginTop: '20px',
+                                                marginLeft: '21px',
+                                                marginBottom: '14px',
+                                                marginRight: '40px',
+                                                disabled: 'true',
+                                                padding: '8px',
+
+                                                display: 'flex', flexDirection: 'row',
+
+                                            }}>
+
+
+                                                <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
+
+                                                <a><img src={threeDotLogo} alt="Canvas Logo" style={{
+                                                    size: '12px',
+                                                    marginLeft: '12px',
+                                                    marginRight: '12px'
+                                                }} />
+                                                </a>
+                                                <a onClick={(e) => clickCloseIcon(e, mapValue, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                                    size: '12px',
+                                                }} />
+                                                </a>
+
+                                            </button>
+                                        )))}
+                                    </div>
+
 
                             }
 
