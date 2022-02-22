@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 //action
 import { fetchLogin } from "../store/action/userAction"
 export const WelcomeScreen = () => {
+    const history =useHistory()
+    const user = useSelector((state) => state.userReducers.userLogin);
     const dispatch = useDispatch()
     const [tempSubmit, setTempInput] = useState({
         name: '',
@@ -13,8 +15,8 @@ export const WelcomeScreen = () => {
     })
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(tempSubmit, 'a')
         dispatch(fetchLogin(tempSubmit))
+        localStorage.setItem('access_token',tempSubmit)
     }
     const userNameInput = (input) => {
         setTempInput({ ...tempSubmit, name: input.target.value })
@@ -22,6 +24,11 @@ export const WelcomeScreen = () => {
     const emailInput = (input) => {
         setTempInput({ ...tempSubmit, email: input.target.value })
     }
+
+    if (localStorage.getItem('access_token')){
+        history.push('/home')
+    }
+    console.log(user)
     return (
 
         <div style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}>

@@ -17,7 +17,8 @@ export const UiScreen = () => {
     const inputFilter = useRef()
     const clcikBody = useRef()
     const customInput = useRef()
-
+    const history = useHistory()
+    const user = useSelector((state) => state.userReducers.userLogin);
     const dispatch = useDispatch();
     const [tempStateMenu, setTemp] = useState({})
 
@@ -26,6 +27,12 @@ export const UiScreen = () => {
         setTemp(inputFilter.current)
 
     })
+
+    useEffect(() =>{
+        if (!localStorage.getItem('access_token')){
+            history.push('/')
+        }
+    },[localStorage.getItem('access_token')])
 
 
     const [selectedValue, setSelectedValue] = useState('')
@@ -128,8 +135,10 @@ export const UiScreen = () => {
         }, false);
     });
 
-    console.log(results.length == 0, 'ddd')
-      
+    console.log(user, 'ddd')
+    if (!localStorage.getItem('access_token')){
+        history.push('/')
+    }
     return (
         <>
             <div ref={clcikBody} className='grid' style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}  >
@@ -143,7 +152,7 @@ export const UiScreen = () => {
                         fontWeight: '700',
                         fontStyle: 'normal'
                     }}>
-                        HI, Anton
+                        HI, {user.name}
                     </h1>
 
 
