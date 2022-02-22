@@ -133,7 +133,7 @@ export const UiScreen = () => {
     return (
         <>
             <div ref={clcikBody} className='grid' style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}  >
-                <div className='row'>
+                {/* <div className='row'> */}
                     <div className="hold-transition login-page" style={{ backgroundColor: "#E5E5E5" }}>
                         <h1 style={{
                             position: 'absolute', top: '10.25%',
@@ -160,7 +160,7 @@ export const UiScreen = () => {
                             marginLeft: '42.7%',
                             marginRight: '42.7%'
                         }}>
-                            <div class='row'>
+                            {/* <div class='row'> */}
                                 <p style={{
                                     display: 'flex',
 
@@ -176,7 +176,7 @@ export const UiScreen = () => {
                                 }}>
                                     Column Name
                                 </p>
-
+                                <div className='row'>
 
                                 <div className="mb-3" style={{ display: 'inline-flex', padding: '0px', justifyContent: 'center', width: '210px', height: '44px' }}>
 
@@ -192,183 +192,185 @@ export const UiScreen = () => {
                                         <img src={logo} alt="Canvas Logo" style={{ size: '16px', backgroundColor: 'white', }} />
                                     </div>
 
-                                    <div>
-                                        {selectedValue.length > 0 && templateDropDown.filter((item, i) => item.label[0].toLowerCase() === selectedValue[0].toLowerCase()).length > 0
-                                            ?
-                                            <Autocomplete type="text"
-                                                className="input-txt1"
 
-                                                id="input-filter" data-filter={templateDropDown}
+                                    {selectedValue.length > 0 && templateDropDown.filter((item, i) => item.label[0].toLowerCase() === selectedValue[0].toLowerCase()).length > 0
+                                        ?
 
-                                                // autocomplete start
-                                                items={templateDropDown}
-                                                shouldItemRender={(item, value
-                                                ) => item.label.toLowerCase()
-                                                    .indexOf(value.toLowerCase()) > -1}
+                                        <Autocomplete type="text"
+                                            className="input-txt1"
 
-                                                getItemValue={item => item.label}
+                                            id="input-filter" data-filter={templateDropDown}
 
-                                                renderItem={(item, isHighlighted) =>
-                                                    selectedValue.toLowerCase()[0] === item.label.toLowerCase()[0] ? <div
-                                                        style={{
-                                                            background: isHighlighted ?
-                                                                '#FFDDDD' : '#FFFFFF',
-                                                            width: '134px',
-                                                            height: '32px',
-                                                            borderTopLeftRadius: '0px',
-                                                            borderBottomLeftRadius: '0px',
-                                                            justifyContent: 'flex-start',
-                                                            display: 'flex',
-                                                            marginLeft: '11.5px',
-                                                            marginBottom: '8px',
-                                                            padding: '8px',
-                                                        }}
-                                                        key={item.id}>
-                                                        {item.label} <br></br>
+                                            // autocomplete start
+                                            items={templateDropDown}
+                                            shouldItemRender={(item, value
+                                            ) => item.label.toLowerCase()
+                                                .indexOf(value.toLowerCase()) > -1}
 
-                                                    </div> : <div>
-                                                    </div>
-                                                }
+                                            getItemValue={item => item.label}
 
-                                                value={selectedValue}
-                                                onChange={e => changeSelectedValue(e.target.value)}
-                                                onSelect={(val) => selectSelectedValue(val)}
-                                                ref={inputFilter}
-                                                menuStyle={{
-                                                    display: 'block !important',
-                                                    onMenuVisibilityChange: 'open',
-                                                    open: true,
-                                                    // width: '210px',
-                                                    height: 'auto',
-                                                    // display: 'flex',
-                                                    flexDirection: 'row',
-                                                    flexWrap: 'wrap',
-                                                    fontFamily: 'nunito',
-                                                    marginLeft: '0px',
-                                                    marginTop: '19px',
-                                                    marginLeft: '-42px',
-                                                    marginBottom: '12px',
-                                                    textAlign: 'center',
-                                                    borderRadius: '8px',
-                                                    background: '#FFFFFF',
-                                                    padding: '15px 0px 10px',
-                                                    // fontSize: '90%',
-                                                    // position: 'float',
-                                                    overflow: 'auto',
-                                                    maxHeight: '169px',
-                                                    fontSize: '12px',
-                                                    lineHeight: '16px',
-                                                    zIndex: 1,
-
-
-                                                }}
-                                                inputProps={{
-                                                    style: {
-                                                        fontFamily: 'Nunito',
-                                                        fontSize: '12px',
-                                                        width: '166px',
-                                                        height: '44px',
-                                                        top: '42px',
-                                                        // position: 'static',
-                                                        paddingTop: '14px',
-                                                        paddingBottom: '14px',
-                                                        paddingRight: '21px',
-                                                        paddingLeft: '26px',
-                                                        border: '0',
+                                            renderItem={(item, isHighlighted) =>
+                                                selectedValue.toLowerCase()[0] === item.label.toLowerCase()[0] ? <div
+                                                    style={{
+                                                        background: isHighlighted ?
+                                                            '#FFDDDD' : '#FFFFFF',
+                                                        width: '134px',
+                                                        height: '32px',
                                                         borderTopLeftRadius: '0px',
                                                         borderBottomLeftRadius: '0px',
+                                                        justifyContent: 'flex-start',
+                                                        display: 'flex',
+                                                        marginLeft: '11.5px',
+                                                        marginBottom: '8px',
+                                                        padding: '8px',
+                                                    }}
+                                                    key={item.id}>
+                                                    {item.label} <br></br>
 
-                                                    },
-                                                    placeholder: "Write your field name"
-                                                }}
-                                            // autocomplet finsih
-                                            ></Autocomplete>
+                                                </div> : <div>
+                                                </div>
+                                            }
 
 
-                                            : <Autocomplete type="text"
-                                                className="form-control input-txt1"
+                                            value={selectedValue}
+                                            onChange={e => changeSelectedValue(e.target.value)}
+                                            onSelect={(val) => selectSelectedValue(val)}
+                                            ref={inputFilter}
+                                            menuStyle={{
+                                                display: 'block !important',
+                                                onMenuVisibilityChange: 'open',
+                                                open: true,
+                                                // width: '210px',
+                                                height: 'auto',
+                                                // display: 'flex',
+                                                flexDirection: 'row',
+                                                flexWrap: 'wrap',
+                                                fontFamily: 'nunito',
+                                                marginLeft: '0px',
+                                                marginTop: '19px',
+                                                marginLeft: '-42px',
+                                                marginBottom: '12px',
+                                                textAlign: 'center',
+                                                borderRadius: '8px',
+                                                background: '#FFFFFF',
+                                                padding: '15px 0px 10px',
+                                                // fontSize: '90%',
+                                                // position: 'float',
+                                                overflow: 'auto',
+                                                maxHeight: '169px',
+                                                fontSize: '12px',
+                                                lineHeight: '16px',
+                                                zIndex: 10,
 
-                                                id="input-filter" data-filter={templateDropDown}
-                                                // autocomplete start
-                                                items={templateDropDown}
-                                                shouldItemRender={(item, value
-                                                ) => item.label.toLowerCase()
-                                                    .indexOf(value.toLowerCase()) > -1}
 
-                                                getItemValue={item => item.label}
-
-                                                renderItem={(item, isHighlighted) =>
-                                                    selectedValue.toLowerCase()[0] === item.label.toLowerCase()[0] ? <div
-                                                        style={{
-                                                            background: isHighlighted ?
-                                                                '#FFDDDD' : '#FFFFFF',
-                                                            width: '134px',
-                                                            height: '32px',
-                                                            borderRadius: '4px',
-                                                            justifyContent: 'flex-start',
-                                                            display: 'flex',
-                                                            marginLeft: '11.5px',
-                                                            marginBottom: '8px',
-                                                            padding: '8px'
-                                                        }}
-                                                        key={item.id}>
-                                                        {selectedValue} <br></br>
-
-                                                    </div> : <div>
-                                                    </div>
-                                                }
-
-                                                value={selectedValue}
-                                                onChange={e => changeSelectedValue(e.target.value)}
-                                                onSelect={(val) => selectSelectedValue(val)}
-                                                menuStyle={{
-                                                    onMenuVisibilityChange: 'open',
-                                                    open: false,
-                                                    width: '210px',
-                                                    height: '169px',
-                                                    fontFamily: 'nunito',
-                                                    marginTop: '19px',
-                                                    marginLeft: '-42px',
-                                                    marginBottom: '12px',
-                                                    textAlign: 'center',
-                                                    borderRadius: '8px',
-                                                    background: 'transparent',
-                                                    padding: '15px 0px 10px',
-                                                    fontSize: '90%',
-                                                    position: 'fixed',
-                                                    overflow: 'auto',
-                                                    // maxHeight: '50%',
+                                            }}
+                                            inputProps={{
+                                                style: {
+                                                    fontFamily: 'Nunito',
                                                     fontSize: '12px',
-                                                    lineHeight: '16px',
-                                                    zIndex: 1
-                                                }}
-                                                inputProps={{
-                                                    style: {
-                                                        fontFamily: 'Nunito',
-                                                        fontSize: '12px',
-                                                        width: '166px',
-                                                        height: '44px',
-                                                        top: '42px',
-                                                        position: 'static',
-                                                        paddingTop: '14px',
-                                                        paddingBottom: '14px',
-                                                        paddingRight: '21px',
-                                                        paddingLeft: '26px',
-                                                        border: '0',
-                                                        borderTopLeftRadius: '0px',
-                                                        borderBottomLeftRadius: '0px',
-                                                        borderTopRightRadius: '4px',
-                                                        borderBottomRightRadius: '4px'
-                                                    },
-                                                    placeholder: "Write your field name"
-                                                }}
-                                            // autocomplet finsih
+                                                    width: '166px',
+                                                    height: '44px',
+                                                    top: '42px',
+                                                    // position: 'static',
+                                                    paddingTop: '14px',
+                                                    paddingBottom: '14px',
+                                                    paddingRight: '21px',
+                                                    paddingLeft: '26px',
+                                                    border: '0',
+                                                    borderTopLeftRadius: '0px',
+                                                    borderBottomLeftRadius: '0px',
 
-                                            ></Autocomplete>
-                                        }
-                                    </div>
+                                                },
+                                                placeholder: "Write your field name"
+                                            }}
+                                        // autocomplet finsih
+                                        ></Autocomplete>
+
+                                        : <Autocomplete type="text"
+                                            className="form-control input-txt1"
+
+                                            id="input-filter" data-filter={templateDropDown}
+                                            // autocomplete start
+                                            items={templateDropDown}
+                                            shouldItemRender={(item, value
+                                            ) => item.label.toLowerCase()
+                                                .indexOf(value.toLowerCase()) > -1}
+
+                                            getItemValue={item => item.label}
+
+                                            renderItem={(item, isHighlighted) =>
+                                                selectedValue.toLowerCase()[0] === item.label.toLowerCase()[0] ? <div
+                                                    style={{
+                                                        background: isHighlighted ?
+                                                            '#FFDDDD' : '#FFFFFF',
+                                                        width: '134px',
+                                                        height: '32px',
+                                                        borderRadius: '4px',
+                                                        justifyContent: 'flex-start',
+                                                        display: 'flex',
+                                                        marginLeft: '11.5px',
+                                                        marginBottom: '8px',
+                                                        padding: '8px'
+                                                    }}
+                                                    key={item.id}>
+                                                    {selectedValue} <br></br>
+
+                                                </div> : <div>
+                                                </div>
+                                            }
+
+                                            value={selectedValue}
+                                            onChange={e => changeSelectedValue(e.target.value)}
+                                            onSelect={(val) => selectSelectedValue(val)}
+                                            menuStyle={{
+                                                onMenuVisibilityChange: 'open',
+                                                open: false,
+                                                width: '210px',
+                                                height: '169px',
+                                                fontFamily: 'nunito',
+                                                marginTop: '19px',
+                                                marginLeft: '-42px',
+                                                marginBottom: '12px',
+                                                textAlign: 'center',
+                                                borderRadius: '8px',
+                                                background: 'transparent',
+                                                padding: '15px 0px 10px',
+                                                fontSize: '90%',
+                                                position: 'fixed',
+                                                overflow: 'auto',
+                                                // maxHeight: '50%',
+                                                fontSize: '12px',
+                                                lineHeight: '16px',
+                                                zIndex: 1
+                                            }}
+                                            inputProps={{
+                                                style: {
+                                                    fontFamily: 'Nunito',
+                                                    fontSize: '12px',
+                                                    width: '166px',
+                                                    height: '44px',
+                                                    top: '42px',
+                                                    position: 'static',
+                                                    paddingTop: '14px',
+                                                    paddingBottom: '14px',
+                                                    paddingRight: '21px',
+                                                    paddingLeft: '26px',
+                                                    border: '0',
+                                                    borderTopLeftRadius: '0px',
+                                                    borderBottomLeftRadius: '0px',
+                                                    borderTopRightRadius: '4px',
+                                                    borderBottomRightRadius: '4px'
+                                                },
+                                                placeholder: "Write your field name"
+                                            }}
+                                        // autocomplet finsih
+
+                                        ></Autocomplete>
+                                    }
 
                                 </div>
+                                {/* </div> */}
+                                {/* <div className='row'> */}
                                 {inputFilter.current == null && selectedValue.length > 0 && templateDropDown.filter((item, i) => item.label.toLowerCase() !== selectedValue.toLowerCase()).length > 0
                                     &&
 
@@ -425,210 +427,33 @@ export const UiScreen = () => {
                                             <p style={{ fontFamily: 'nunito', fontWeight: '600', fontSize: '10px', width: '106px', fontWeight: 'normal' }}>Create New Column</p>
 
 
-                                            <a ><img src={closeIcon} alt="Canvas Logo" style={{
-                                                size: '12px',
-                                            }} />
-                                            </a>
 
-                                        </button> {selectedValue.split('/').join(' - ')}</div>
+
+                                        </button> <p style={{ marginBottom: '0px', textAlign: 'left', padding: '8px', marginLeft: '15px' }}>{selectedValue.split('/').join(' - ')}</p></div>
 
                                 }
-                                {tagValue.length > 0 &&
-                                    <div style={{
+                                {/* </div> */}
+                                {/* <div className='row'> */}
+                                    {tagValue.length > 0 && flag ?
+                                        <div style={{
 
-                                        width: '210px',
-                                        height: 'auto',
-                                        fontFamily: 'nunito',
-                                        //    marginTop: '245px',
-                                        marginBottom: '100px',
-                                        textAlign: 'center',
-                                        borderRadius: '8px',
-                                        background: '#FFFFFF',
-                                        fontSize: '90%',
-                                        //    position: 'fixed',
-                                        overflow: 'auto',
-                                        maxHeight: '121px',
-                                        fontSize: '12px',
-                                        lineHeight: '16px',
-                                        padding: '0px',
-                                        scrollBehavior: 'smooth',
-                                        flexFlow: 'row wrap'
-                                    }}>
-                                        {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                            <button type="button" className='btn' style={{
-                                                width: '149px',
-                                                height: '32px',
-                                                backgroundColor: '#FF5050',
-                                                borderRadius: '4px',
-                                                fontFamily: 'nunito',
-                                                fontSize: '12px',
-                                                fontWeight: '600',
-                                                color: '#FFFFFF',
-                                                textAlign: 'left',
-                                                marginTop: '20px',
-                                                marginLeft: '21px',
-                                                marginBottom: '14px',
-                                                marginRight: '40px',
-
-                                                padding: '8px',
-                                                display: 'flex',
-                                                // flexDirection: 'row',
-                                                zIndex: '1',
-                                            }}>
-
-
-                                                <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                                <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                    size: '12px',
-                                                    marginLeft: '12px',
-                                                    marginRight: '12px'
-                                                }} />
-                                                </a>
-                                                <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                    size: '12px',
-                                                }} />
-                                                </a>
-
-                                            </button>
-                                        )))}
-                                    </div>
-
-                                }
-
-                                {/* {flag === true && tagValue.length > 1 ?
-                                <div style={{
-                                   
-                                    width: '210px',
-                                    height: '121px',
-                                    fontFamily: 'nunito',
-                                    marginTop: '245px',
-                                    textAlign: 'center',
-                                    borderRadius: '8px',
-                                    background: '#FFFFFF',
-                                    fontSize: '90%',
-                                    position: 'fixed',
-                                    overflow: 'auto',
-                                    maxHeight: '50%',
-                                    fontSize: '12px',
-                                    lineHeight: '16px',
-
-                                    scrollBehavior: 'smooth'
-                                }}>
-                                    {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                        <button type="button" className='btn' style={{
-                                            width: '149px',
-                                            height: '32px',
-                                            backgroundColor: '#FF5050',
-                                            borderRadius: '4px',
-                                            fontFamily: 'nunito',
-                                            fontSize: '12px',
-                                            fontWeight: '600',
-                                            color: '#FFFFFF',
-                                            textAlign: 'left',
-                                            marginTop: '20px',
-                                            marginLeft: '21px',
-                                            marginBottom: '14px',
-                                            marginRight: '40px',
-                                            disabled: 'true',
-                                            padding: '8px',
-
-                                            display: 'flex', flexDirection: 'row',
-
-                                        }}>
-
-
-                                            <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                            <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                size: '12px',
-                                                marginLeft: '12px',
-                                                marginRight: '12px'
-                                            }} />
-                                            </a>
-                                            <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                size: '12px',
-                                            }} />
-                                            </a>
-
-                                        </button>
-                                    )))}
-                                </div>
-                                : flag === true && tagValue.length === 1
-                                    ? <div style={{
-                                        width: '210px',
-                                        height: 'auto',
-                                        fontFamily: 'nunito',
-                                        marginTop: '245px',
-                                        textAlign: 'center',
-                                        borderRadius: '8px',
-                                        background: '#FFFFFF',
-                                        fontSize: '90%',
-                                        position: 'fixed',
-                                        overflow: 'auto',
-                                        maxHeight: '50%',
-                                        fontSize: '12px',
-                                        lineHeight: '16px',
-
-                                        scrollBehavior: 'smooth'
-                                    }}>
-                                        {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                            <button type="button" className='btn' style={{
-                                                width: '149px',
-                                                height: '32px',
-                                                backgroundColor: '#FF5050',
-                                                borderRadius: '4px',
-                                                fontFamily: 'nunito',
-                                                fontSize: '12px',
-                                                fontWeight: '600',
-                                                color: '#FFFFFF',
-                                                textAlign: 'left',
-                                                marginTop: '20px',
-                                                marginLeft: '21px',
-                                                marginBottom: '14px',
-                                                marginRight: '40px',
-                                                disabled: 'true',
-                                                padding: '8px',
-
-                                                display: 'flex', flexDirection: 'row',
-
-                                            }}>
-
-
-                                                <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                                <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                    size: '12px',
-                                                    marginLeft: '12px',
-                                                    marginRight: '12px'
-                                                }} />
-                                                </a>
-                                                <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                    size: '12px',
-                                                }} />
-                                                </a>
-
-                                            </button>
-                                        )))}
-                                    </div>
-
-                                    : flag === false && tagValue.length == 0
-
-                                        ? <div style={{
                                             width: '210px',
-                                            height: '121px',
+                                            height: 'auto',
                                             fontFamily: 'nunito',
-                                            marginTop: '63px',
-                                            marginBottom: '1100000px',
+                                            marginTop: '188px',
+                                            marginBottom: '100px',
                                             textAlign: 'center',
                                             borderRadius: '8px',
-                                            background: 'transparent',
+                                            background: '#FFFFFF',
                                             fontSize: '90%',
-                                            position: 'fixed',
+                                            //    position: 'fixed',
                                             overflow: 'auto',
-                                            maxHeight: '50%',
+                                            maxHeight: '121px',
                                             fontSize: '12px',
                                             lineHeight: '16px',
+                                            padding: '0px',
+                                            scrollBehavior: 'smooth',
+                                            flexFlow: 'row wrap'
                                         }}>
                                             {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
                                                 <button type="button" className='btn' style={{
@@ -645,11 +470,11 @@ export const UiScreen = () => {
                                                     marginLeft: '21px',
                                                     marginBottom: '14px',
                                                     marginRight: '40px',
-                                                    disabled: 'true',
+
                                                     padding: '8px',
-
-                                                    display: 'flex', flexDirection: 'row',
-
+                                                    display: 'flex',
+                                                    // flexDirection: 'row',
+                                                    zIndex: '1',
                                                 }}>
 
 
@@ -661,7 +486,69 @@ export const UiScreen = () => {
                                                         marginRight: '12px'
                                                     }} />
                                                     </a>
-                                                    <a onClick={(e) => clickCloseIcon(e, mapValue, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                                    <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
+                                                        size: '12px',
+                                                    }} />
+                                                    </a>
+
+                                                </button>
+                                            )))}
+                                        </div> 
+                                        : tagValue.length == 0  ?
+                                                    <div></div>
+                                        :
+                                        <div style={{
+
+                                            width: '210px',
+                                            height: 'auto',
+                                            fontFamily: 'nunito',
+                                            //    marginTop: '19px',
+                                            marginBottom: '100px',
+                                            textAlign: 'center',
+                                            borderRadius: '8px',
+                                            background: '#FFFFFF',
+                                            fontSize: '90%',
+                                            //    position: 'fixed',
+                                            overflow: 'auto',
+                                            maxHeight: '121px',
+                                            fontSize: '12px',
+                                            lineHeight: '16px',
+                                            padding: '0px',
+                                            scrollBehavior: 'smooth',
+                                            flexFlow: 'row wrap'
+                                        }}>
+                                            {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
+                                                <button type="button" className='btn' style={{
+                                                    width: '149px',
+                                                    height: '32px',
+                                                    backgroundColor: '#FF5050',
+                                                    borderRadius: '4px',
+                                                    fontFamily: 'nunito',
+                                                    fontSize: '12px',
+                                                    fontWeight: '600',
+                                                    color: '#FFFFFF',
+                                                    textAlign: 'left',
+                                                    marginTop: '20px',
+                                                    marginLeft: '21px',
+                                                    marginBottom: '14px',
+                                                    marginRight: '40px',
+
+                                                    padding: '8px',
+                                                    display: 'flex',
+                                                    // flexDirection: 'row',
+                                                    zIndex: '1',
+                                                }}>
+
+
+                                                    <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
+
+                                                    <a><img src={threeDotLogo} alt="Canvas Logo" style={{
+                                                        size: '12px',
+                                                        marginLeft: '12px',
+                                                        marginRight: '12px'
+                                                    }} />
+                                                    </a>
+                                                    <a onClick={(e) => clickCloseIcon(e, i)}><img src={closeIcon} alt="Canvas Logo" style={{
                                                         size: '12px',
                                                     }} />
                                                     </a>
@@ -670,131 +557,14 @@ export const UiScreen = () => {
                                             )))}
                                         </div>
 
-                                        :tagValue.length == 1  ?
+                                    }
+                                </div>
 
-                                            <div style={{
-                                                width: '210px',
-                                                height: 'auto',
-                                                fontFamily: 'nunito',
-                                                marginTop: '63px',
-                                                marginBottom: '1100000px',
-                                                textAlign: 'center',
-                                                borderRadius: '8px',
-                                                background: '#FFFFFF',
-                                                fontSize: '90%',
-                                                position: 'fixed',
-                                                overflow: 'auto',
-                                                maxHeight: '50%',
-                                                fontSize: '12px',
-                                                lineHeight: '16px',
-                                                flexFlow: 'row wrap',
-
-                                            }}>
-                                                {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                                    <button type="button" className='btn' style={{
-                                                        width: '149px',
-                                                        height: '32px',
-                                                        backgroundColor: '#FF5050',
-                                                        borderRadius: '4px',
-                                                        fontFamily: 'nunito',
-                                                        fontSize: '12px',
-                                                        fontWeight: '600',
-                                                        color: '#FFFFFF',
-                                                        textAlign: 'left',
-                                                        marginTop: '20px',
-                                                        marginLeft: '21px',
-                                                        marginBottom: '14px',
-                                                        marginRight: '40px',
-                                                        disabled: 'true',
-                                                        padding: '8px',
-
-                                                        display: 'flex', flexDirection: 'row',
-
-                                                    }}>
-                                                        <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                                        <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                            size: '12px',
-                                                            marginLeft: '12px',
-                                                            marginRight: '12px'
-                                                        }} />
-                                                        </a>
-                                                        <i class="fi fi-br-plus"></i>
-                                                        <a onClick={(e) => clickCloseIcon(e, mapValue, i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                            size: '12px',
-                                                        }} />
-                                                        </a>
-
-                                                    </button>
-                                                )))}
-                                            </div>
-                                           
-                                    
-                                            
-                                            :<div style={{
-                                      
-                                                width: '210px',
-                                                height: '121px',
-                                                fontFamily: 'nunito',
-                                                marginTop: '63px',
-                                                marginBottom: '1100000px',
-                                                textAlign: 'center',
-                                                borderRadius: '8px',
-                                                background: '#transparent',
-                                                fontSize: '90%',
-                                                position: 'fixed',
-                                                overflow: 'auto',
-                                                maxHeight: '50%',
-                                                fontSize: '12px',
-                                                lineHeight: '16px',
-                                                flexFlow: 'row wrap',
-
-                                            }}>
-                                                {tagValue.length > 0 && (tagValue.map((mapValue, i) => (
-                                                    <button type="button" className='btn' style={{
-                                                        width: '149px',
-                                                        height: '32px',
-                                                        backgroundColor: '#FF5050',
-                                                        borderRadius: '4px',
-                                                        fontFamily: 'nunito',
-                                                        fontSize: '12px',
-                                                        fontWeight: '600',
-                                                        color: '#FFFFFF',
-                                                        textAlign: 'left',
-                                                        marginTop: '20px',
-                                                        marginLeft: '21px',
-                                                        marginBottom: '14px',
-                                                        marginRight: '40px',
-                                                        disabled: 'true',
-                                                        padding: '8px',
-
-                                                        display: 'flex', flexDirection: 'row',
-
-                                                    }}>
-
-
-                                                        <p style={{ fontFamily: 'nunito', fontSize: '9px', width: '85px', fontWeight: 'normal' }}>{mapValue}</p>
-
-                                                        <a><img src={threeDotLogo} alt="Canvas Logo" style={{
-                                                            size: '12px',
-                                                            marginLeft: '12px',
-                                                            marginRight: '12px'
-                                                        }} />
-                                                        </a>
-                                                        <a onClick={(e) => clickCloseIcon(e, mapValue, i)}><img src={closeIcon} alt="Canvas Logo" style={{
-                                                            size: '12px',
-                                                        }} />
-                                                        </a>
-
-                                                    </button>
-                                                )))}
-                                            </div>
-                            } */}
-                            </div>
+                            {/* </div> */}
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </>
     )
