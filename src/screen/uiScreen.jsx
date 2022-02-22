@@ -89,9 +89,6 @@ export const UiScreen = () => {
 
     const changeSelectedValueNoFilter = (e) => {
         setSelectedValue(e)
-
-        // setTemplateDropDownTemp({ ...templateDropDownTemp[0], label: e })
-
     }
 
     const selectSelectedValue = (val) => {
@@ -124,16 +121,7 @@ export const UiScreen = () => {
         setTagValue([...tagValue, val])
     }
 
-    // function filterByValue(array, string) {
-    //     return array.filter(o =>
-    //         Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
-    // }
-    // function filterByValue(array, value) {
-    //     if (value.length > 0 && array.filter((item, i) => item.label[0].toLowerCase() === value[0].toLowerCase())){
-
-    //         return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    //     }
-    // }
+  
     const results = templateDropDown.filter((obj) => {
         return Object.keys(obj).reduce((acc, curr) => {
             return acc || obj[curr].toLowerCase().includes(selectedValue);
@@ -141,8 +129,7 @@ export const UiScreen = () => {
     });
 
     console.log(results.length == 0, 'ddd')
-    // var filterCondition = filterByValue(templateDropDown, selectedValue)
-    // console.log(filterCondition,'fase')   
+      
     return (
         <>
             <div ref={clcikBody} className='grid' style={{ backgroundColor: "#E5E5E5", maxHeight: '100%' }}  >
